@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+{% include 'layout/admin_css.html' %}
+<body>
+
+<!--Header-part-->
+<div id="header">
+  <h1><a href="dashboard.html">Matrix Admin</a></h1>
+</div>
+<!--close-Header-part--> 
+
+{% include 'layout/navbar.html' %}
+<!--top-Header-menu-->
+
+<!--close-top-serch-->
+<!--sidebar-menu-->
+{% include 'layout/sidebar.html' %}
+<!--sidebar-menu-->
+
+<!--main-container-part-->
+{% block maincontent %}
+
+{% endblock maincontent %}
+<!--end-main-container-part-->
+
+<!--Footer-part-->
+
+{% include 'layout/footer.html' %}
+
+<!--end-Footer-part-->
+
+{% include 'layout/admin_script.html' %}
+</body>
+</html>

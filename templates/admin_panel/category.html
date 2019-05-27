@@ -1,0 +1,91 @@
+{% extends 'admin_panel/index.html' %}
+{% block maincontent %}
+<div class="row-fluid">
+<div class="span10">
+<div class="widget-box">
+    <div class="widget-title"> <span class="icon"> <i class="icon-align-justify"></i> </span>
+      <h5>Personal-info</h5>
+    </div>
+    <div class="widget-content nopadding">
+      <form action="" method="POST" class="form-horizontal">
+          {% csrf_token %}
+        <div class="control-group">
+          <label class="control-label">Name</label>
+          <div class="controls">
+           {{form.name}}
+          </div>
+        </div>
+        <div class="control-group">
+                <label class="control-label">Description</label>
+                <div class="controls">
+                  {{form.description}}
+                </div>
+              </div>
+              <div class="control-group">
+                    <label class="control-label">Status</label>
+                    <div class="controls">
+                      {{form.status}}
+                    </div>
+                  </div>
+        
+        <div class="form-actions">
+          <button type="submit" class="btn btn-success">Save</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  </div>
+  </div>
+
+  <div class="row-fluid">
+      <div class="span10">
+        <div class="widget-box">
+          <div class="widget-title"> <span class="icon"> <i class="icon-th"></i> </span>
+            <h5>Static table</h5>
+          </div>
+          <div class="widget-content nopadding">
+            <table class="table table-bordered table-striped">
+              <thead>
+                <tr>
+
+                  <th>Name</th>
+                  <th>Description</th>
+                  <th>Status</th>
+                  <th>Action</th>
+                 
+                </tr>
+              </thead>
+              <tbody>
+                {% for category_data in category_list %}
+                <tr >
+                  <td>{{category_data.name}}</td>        
+                  <td>{{category_data.description}}</td>
+                  <td>{{category_data.status}}</td>
+                  <td>
+                    <form method="POST" action="{% url 'categoryDelete' category_data.pk %}">
+                      {% csrf_token %}
+                    <button type="submit" class="btn btn-danger">Delete</button>
+                    </form>
+                    <a href="{% url 'category_update' category_data.pk %}">
+                    <button type="submit" class="btn btn-info">Edit</button>
+                    </a>
+                    <a href="{% url 'Category_status' category_data.pk %}">
+                    {% if category_data.status == 'Active'  %}
+                    <button type="button" class="btn btn-primary">Active</button>
+                    {% else %}
+                    <button type="button" class="btn btn-warning">Inactive</button>
+                    {% endif %}
+                    </a>
+                  </td>
+                </tr>
+               {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        </div>
+        </div>
+        </div>
+      
+
+
+  {% endblock maincontent %}
